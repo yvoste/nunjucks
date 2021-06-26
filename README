@@ -1,0 +1,6 @@
+créer unebase sitepoint
+
+créer une table article avec 3 colonnes id title body
+céer une table ms_user avec 3 colonnes firstname latsname birthday
+
+lancez le serveur node app.js
