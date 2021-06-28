@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 8080;
 const corsOptions = {
   origin: "http://localhost:8080"
 };
+
+
 // Then pass them to cors:
 app.use(cors(corsOptions));
 
@@ -24,11 +26,10 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.set("view engine", "njk")
-nunjucks.configure(['views'],  { // setting default views folder
+app.set("view engine", "html")
+var env = nunjucks.configure(['views'],  { // setting default views folder
   autoescape: true,
-  express: app,
-  web: {async:true}
+  express: app
 })
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -39,4 +40,4 @@ require("./app/routes/back")(app)
 // set port, listen for requests
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
-});
+})

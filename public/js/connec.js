@@ -3,6 +3,7 @@ let APIURL = "http://localhost:8080/api/user/"
 
 // action when document is ready  see at the end of script
 ready(event => {
+  dataStorage()
   document.getElementById('nolink').onclick = function(e){
     e.preventDefault()
     console.log('nolink')
@@ -24,15 +25,10 @@ function getUser() {
     return Promise.reject(response);
   })
   .then( data => {
-      //console.log(data[0])
-      /*const nf = nunjucks.render ('pages/parti.html', {
-        firstname: data[0].firstname,
-        lastname: data[0].lastname,
-        birthday: data[0].birthday
-      })*/
+      console.log(data.content)      
       document.getElementById('master').innerHTML = data.content
   })
-  .catch(error => console.log('Error' + error))
+  .catch(error => console.log(error))
 }
 // called by click on button Add article
 function addArticle() {
@@ -73,3 +69,17 @@ function ready(callbackFunction){
   else 
     document.addEventListener("DOMContentLoaded", callbackFunction)  
 }
+
+// on document.ready test
+function dataStorage(){
+
+  // "teddies" "furniture" "cameras"
+   if(!localStorage.getItem("isLogged")){
+     localStorage.setItem("isLogged", false);
+     console.log("localStorage isLogged created");
+   };
+   if(!localStorage.getItem("rememberMe")){
+     localStorage.setItem("rememberMe", false); 
+     console.log("localStorage rememberMe created");
+   };
+ }
